@@ -5,7 +5,7 @@ The title of the project is ‘Husky Payroll Management System’. This is a pro
 
 
 Objectives of the project
-The primary objective of this project is to accurately calculate the employee salaries and taxes, maintain a centralized database of employee information, and generate relevant reports for management.
+The primary objective of this project is to accurately calculate the employee salaries and maintain a centralized database of employee information, and generate relevant reports for management.
 
 
 Assumptions
