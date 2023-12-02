@@ -9,24 +9,50 @@ The primary objective of this project is to accurately calculate the employee sa
 
 
 Assumptions
-To replicate the exact real-world problem as an academic project requires a lot of time and resources. So, to make it possible, we assumed that every job has a daily four-hour shift during weekdays i.e., five working days. And since tax rules are similar for both local and international students, citizenship information is irrelevant to this project.
+To replicate the exact real-world problem as an academic project requires a lot of time and resources. So, to make it possible, we assumed that every job has a daily five-hour shift during weekdays i.e., five working days. 
 
 
 
 Scripts to be executed in the following order
 
-1. ADMIN_SUPERVISOR_USER_CREATION  : This script creates the main user of our project.
+1) 1.APP_ADMIN_ALL_ACCESS : This script creates the main user of our project and grants necessary permissions.
 
-2. PROJECT_3_Team12_Table_Creation : Creation of all the tables and Sequences
+2) 2.All_Tables_Creation : Creation of all the tables and Sequences.
+  
+3) 3.All_Views : Creation of all the views.
+  
+4) 4.Creaating_Secondary_users : Creation of two more users and granting access of certain views to them.
 
-3. VIEWS : Creation of all the views. More views will be created in the next phase
+5) 5.Trigger_Band_Value : Use of Trigger to automatically insert value using certain logic.
 
-4. SECONDARY_USERS : Creation of two more users and granting access to them.
+6) 6.RECORDS_PACKAGE : Usage of Package where certain stored procedures are implemented.
 
-5. DML_INSERTING_RECORDS : This will insert all the records of tables except ATTENDANCE and PAYROLL.
+7) 7.Calling_Procedures : Calling of the stored procedures from RECORDS_PACKAGE.
 
-6. ATTENDANCE_MARKING_DML : This will insert all the records in ATTENDANCE Table
+8) 8.ATTENDANCE_MARKING_DML : Used to insert the records into Attendance table.
+  
+9) 9.Payroll_DML : All the Payroll related records are inserted through this script.
+  
+10) 10.FUNCTION_PREV_PAYROLL_STATUS_CHECK : A function which is used to return a value based on a logic implemented.
 
-7. PAYROLL_DML : All the Payroll related records are inserted through this script
+11) 11.Stored_procedure_payroll_check : A Stored procedure to check a payroll status.
 
-8. DELETION_IF_NEEDED : This can be ignored. It will be used only in case of any major errors. ( This is used to rollback if any error occurs and then follow the execution of scripts from the beginning).
+12) 12.Supervisor_Actions : Role of NA_Supervisor is Justified.
+
+13) 13.Student_Actions : Role of Student_User is Justified.
+
+14) 14.Deletion_if_needed : This is used to roll back and delete all tables and sequences if any error occured. This Can be Ignored
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
