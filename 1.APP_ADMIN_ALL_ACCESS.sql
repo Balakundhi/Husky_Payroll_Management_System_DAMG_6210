@@ -1,0 +1,38 @@
+SET SERVEROUTPUT ON;
+
+DECLARE
+    user_exists NUMBER;
+BEGIN
+    -- Check if the user exists
+    SELECT COUNT(*) INTO user_exists FROM DBA_USERS WHERE username = 'APP_ADMIN';
+
+    -- Drop the user if it exists
+    IF user_exists > 0 THEN
+        EXECUTE IMMEDIATE 'DROP USER APP_ADMIN CASCADE';
+        DBMS_OUTPUT.PUT_LINE('User APP_ADMIN dropped.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('User APP_ADMIN does not exist. Proceeding to create.');
+    END IF;
+
+    -- Create the user
+    EXECUTE IMMEDIATE 'CREATE USER APP_ADMIN IDENTIFIED BY "AstonCC2023#"';
+    DBMS_OUTPUT.PUT_LINE('User APP_ADMIN created.');
+
+    -- Grant privileges
+    EXECUTE IMMEDIATE 'GRANT CREATE SESSION, CREATE USER, DROP USER, ALTER USER, CREATE TABLE, CREATE VIEW, CREATE PROCEDURE, CREATE TRIGGER, CREATE SEQUENCE, CREATE SYNONYM TO APP_ADMIN WITH ADMIN OPTION';
+    DBMS_OUTPUT.PUT_LINE('Privileges granted to APP_ADMIN.');
+    
+    EXECUTE IMMEDIATE 'GRANT CONNECT, RESOURCE TO APP_ADMIN WITH ADMIN OPTION';
+   
+    
+    -- Alter  user quota (make sure the tablespace 'DATA' exists)
+    EXECUTE IMMEDIATE 'ALTER USER APP_ADMIN QUOTA UNLIMITED ON DATA';
+    DBMS_OUTPUT.PUT_LINE('Quota set for APP_ADMIN on DATA tablespace.');
+
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An unexpected error occurred: ' || SQLERRM);
+END;
+/
+
+--SELECT * FROM DBA_TAB_PRIVS WHERE GRANTEE = 'NA_SUPERVISOR';
